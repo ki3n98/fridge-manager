@@ -1,4 +1,4 @@
-{% extends 'main.html' %} {% block content %}
+{% extends 'main.html' %} {% block content %} {% load myfilter %}
 <div class="container-fluid row align-items-center g-lg-5 p-5">
   <div class="col-lg-7 text-center text-lg-start">
     <h1 class="display-4 fw-bold lh-1 text-light mb-3">
@@ -14,42 +14,53 @@
   </div>
   <div class="col-md-10 mx-auto col-lg-5">
     <form
+      method="POST"
+      autocomplete="off"
       class="p-4 p-md-5 border rounded-3"
       style="background-color: #54545425"
     >
+      {% csrf_token %}
       <div class="form-floating mb-3">
-        <input
-          type="email"
-          class="form-control"
-          id="floatingInput"
-          placeholder="name@example.com"
-        />
-        <label for="floatingInput">Email address</label>
+        {{form.username|addattributes:"class=form-control,id=floatingInputGrid"}}
+        <label for="floatingInput">{{form.username.label}}</label>
+      </div>
+      <div class="row g-2 mb-3">
+        <div class="col-md">
+          <div class="form-floating">
+            {{form.first_name|addattributes:"class=form-control,id=floatingInputGrid"}}
+            <label for="floatingInputGrid">{{form.first_name.label}}</label>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="form-floating">
+            {{form.last_name|addattributes:"class=form-control,id=floatingInputGrid"}}
+            <label for="floatingInputGrid">{{form.last_name.label}}</label>
+          </div>
+        </div>
       </div>
       <div class="form-floating mb-3">
-        <input
-          type="password"
-          class="form-control"
-          id="floatingPassword"
-          placeholder="Password"
-        />
-        <label for="floatingPassword">Password</label>
+        {{form.email|addattributes:"class=form-control,id=floatingInputGrid"}}
+        <label for="floatingInput">{{form.email.label}}</label>
       </div>
       <div class="form-floating mb-3">
-        <input
-          type="password"
-          class="form-control"
-          id="floatingPassword2"
-          placeholder="Password2"
-        />
-        <label for="floatingPassword">Confirm password</label>
+        {{form.password1|addattributes:"class=form-control,id=floatingInputGrid"}}
+        <label for="floatingInput">{{form.password1.label}}</label>
+      </div>
+      <div class="form-floating mb-3">
+        {{form.password2|addattributes:"class=form-control,id=floatingInputGrid"}}
+        <label for="floatingInput">{{form.password2.label}}</label>
       </div>
       <div class="checkbox mb-3">
         <label>
           <input type="checkbox" value="remember-me" /> Remember me
         </label>
       </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">
+      {{form.errors}}
+      <button
+        class="w-100 btn btn-lg btn-primary"
+        type="submit"
+        value="Register"
+      >
         Sign up
       </button>
       <hr class="my-4" />

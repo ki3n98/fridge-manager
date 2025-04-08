@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    'inventory.apps.InventoryConfig',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +53,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'fridge_manager.urls'
+
 
 TEMPLATES = [
     {
